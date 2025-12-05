@@ -3,13 +3,12 @@ import matplotlib.pyplot as plt
 
 # Monte Carlo estimation of pi with visualization
 
-def estimate_pi(N=100, visualize=True, track_convergence=False, progress_callback=None):
+def estimate_pi(N=100, track_convergence=False, progress_callback=None):
     """
     Monte Carlo estimation of pi.
     
     Args:
         N: Number of random points to generate
-        visualize: If True, shows a matplotlib visualization
         track_convergence: If True, tracks estimates at intervals for convergence analysis
         progress_callback: Optional callback function for progress updates (used by Streamlit)
     
@@ -61,31 +60,19 @@ def estimate_pi(N=100, visualize=True, track_convergence=False, progress_callbac
 
     pi_estimate = 4 * inside / N
 
-    if visualize:
-        fig, ax = plt.subplots(figsize=(6, 6))
-
-        # Draw square boundary
-        square_x = [-1, 1, 1, -1, -1]
-        square_y = [-1, -1, 1, 1, -1]
-        ax.plot(square_x, square_y)
-
-        # Draw circle boundary
-        circle = plt.Circle((0, 0), 1, color='black', fill=False)
-        ax.add_patch(circle)
-
-        # Scatter points
-        ax.scatter(xs_inside, ys_inside, s=1)
-        ax.scatter(xs_outside, ys_outside, s=1)
-
-        ax.set_aspect('equal', 'box')
-        ax.set_title(f"Monte Carlo Pi Estimate: {pi_estimate}")
-
-        plt.show()
-
     if track_convergence:
         return pi_estimate, xs_inside, ys_inside, xs_outside, ys_outside, inside, convergence_points, convergence_estimates
     else:
         return pi_estimate
 
 if __name__ == "__main__":
-    print("Estimated pi:", estimate_pi(10000, visualize=True))
+    N = 10000
+    result = estimate_pi(N, track_convergence=True)
+    pi_estimate, xs_inside, ys_inside, xs_outside, ys_outside, inside_count, convergence_points, convergence_estimates = result
+    outside_count = N - inside_count
+
+    print(f"Monte Carlo pi estimation summary (N={N})")
+    print(f"Points inside circle : {inside_count}")
+    print(f"Points outside circle: {outside_count}")
+    print(f"Percent inside       : {inside_count / N * 100:.2f}%")
+    print(f"Estimated pi         : {pi_estimate:.4f}")

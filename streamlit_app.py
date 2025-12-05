@@ -9,7 +9,7 @@ st.set_page_config(page_title="Monte Carlo Pi Estimator", layout="wide")
 # Title and description
 st.title("Monte Carlo Pi Estimation")
 st.markdown("""
-This app visualizes the Monte Carlo method for estimating π (pi). 
+This app visualizes the Monte Carlo method for estimating π (pi).
 Random points are thrown into a square, and we count how many fall inside the inscribed circle.
 
 **Formula**: π ≈ 4 × (points inside circle) / (total points)
@@ -36,7 +36,7 @@ point_size = st.sidebar.slider(
 
 # Add a button to regenerate
 if st.sidebar.button("Regenerate", type="primary"):
-    st.experimental_rerun()
+    st.rerun()
 
 # Monte Carlo simulation wrapper with Streamlit progress bar
 def monte_carlo_pi(N):

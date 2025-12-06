@@ -61,6 +61,15 @@ The app will open in your default browser at `http://localhost:8501`
 python MonteCarlo_pi_estimate.py
 ```
 
+Example output:
+```
+Monte Carlo pi estimation summary (N=10000)
+Points inside circle : 7783
+Points outside circle: 2217
+Percent inside       : 77.83%
+Estimated pi         : 3.1132
+```
+
 ## Usage
 
 1. Launch the Streamlit app using the command above

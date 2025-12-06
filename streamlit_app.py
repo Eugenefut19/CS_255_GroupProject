@@ -51,7 +51,6 @@ def monte_carlo_pi(N):
     # Call the estimate_pi function from MonteCarlo_pi_estimate.py
     result = estimate_pi(
         N=N, 
-        visualize=False, 
         track_convergence=True,
         progress_callback=progress_callback
     )
